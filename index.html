@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#031a1c">
+<meta name="description" content="Money Tracker Dashboard launcher">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<title>Money Tracker Dashboard</title>
+<style>
+:root{color-scheme:dark;--bg:#031719;--text:#f8fbfc;--muted:#b8c3c7;--green:#08e69a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#031719}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100svh;overflow-x:hidden;background:radial-gradient(ellipse at 80% -6%,rgba(0,235,177,.35),transparent 34%),radial-gradient(ellipse at -8% 48%,rgba(0,174,200,.23),transparent 29%),radial-gradient(ellipse at 107% 72%,rgba(0,235,108,.16),transparent 31%),linear-gradient(155deg,#02151b 0%,#021719 48%,#030b1c 100%);display:flex;justify-content:center;position:relative;isolation:isolate}
+body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid rgba(0,238,194,.45);filter:drop-shadow(0 0 12px rgba(0,227,194,.12));z-index:-1}
+body:before{width:66vw;height:66vw;max-width:680px;max-height:680px;border-radius:48% 52% 65% 35%;top:-48vw;left:-30vw;transform:rotate(-28deg);background:linear-gradient(140deg,rgba(0,160,185,.2),rgba(0,35,46,.02))}
+body:after{width:80vw;height:80vw;max-width:720px;max-height:720px;border-radius:55% 45% 30% 70%;right:-58vw;bottom:-44vw;transform:rotate(26deg);background:linear-gradient(140deg,rgba(0,255,122,.12),rgba(0,43,57,.02))}
+main{width:100%;max-width:520px;min-height:100svh;padding:clamp(20px,4vh,42px) 22px max(28px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(23px,4vh,42px)}
+.brand{width:100%;display:flex;align-items:center;flex-direction:column;text-align:center;gap:clamp(7px,1.5vh,14px)}
+.brand-mark{width:clamp(108px,29vw,150px);height:clamp(108px,29vw,150px);display:block;filter:drop-shadow(0 11px 26px rgba(0,255,172,.12))}
+h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:clamp(30px,8.4vw,42px);text-shadow:0 2px 16px rgba(255,255,255,.08)}
+.subtitle{margin:1px 0 0;color:#c4cdd1;font-weight:300;letter-spacing:.015em;font-size:clamp(25px,6.3vw,32px);line-height:1.05}
+.grid{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tile{aspect-ratio:1.02;min-width:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:clamp(24px,7vw,34px);border:1px solid var(--edge);background:linear-gradient(145deg,var(--tile-a),var(--tile-b) 55%,rgba(1,19,26,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -14px 35px rgba(0,0,0,.19),0 12px 30px rgba(0,0,0,.22),0 0 23px var(--glow);transition:transform .16s ease,filter .16s ease;text-decoration:none;isolation:isolate}
+.tile:before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.18),transparent 48%),linear-gradient(125deg,transparent 25%,rgba(255,255,255,.06) 48%,transparent 69%);z-index:-1}
+.tile:after{content:"";position:absolute;inset:8px;border-radius:inherit;border:1px solid rgba(255,255,255,.07);pointer-events:none}
+.tile:active{transform:scale(.975);filter:brightness(1.12)}
+.tile svg{width:78%;height:78%;max-width:190px;max-height:190px;overflow:visible;filter:drop-shadow(0 9px 11px rgba(0,0,0,.24))}
+.dashboard{--tile-a:rgba(0,108,220,.8);--tile-b:rgba(0,196,171,.48);--edge:rgba(61,224,255,.92);--glow:rgba(0,193,255,.17)}
+.sheets{--tile-a:rgba(0,180,100,.68);--tile-b:rgba(0,110,84,.58);--edge:rgba(53,255,166,.8);--glow:rgba(0,237,128,.15)}
+.line{--tile-a:rgba(0,216,78,.62);--tile-b:rgba(0,95,69,.7);--edge:rgba(69,255,144,.8);--glow:rgba(0,255,99,.16)}
+.make{--tile-a:rgba(132,0,255,.68);--tile-b:rgba(36,16,116,.8);--edge:rgba(223,78,255,.88);--glow:rgba(148,0,255,.2)}
+@media(min-width:560px){main{justify-content:center;padding-top:28px}.grid{gap:18px}.tile{aspect-ratio:1.12}}
+@media(max-height:760px){main{gap:clamp(14px,2.6vh,24px);padding-top:18px}.brand-mark{width:clamp(86px,22vh,124px);height:clamp(86px,22vh,124px)}h1{font-size:clamp(28px,7vw,36px)}.subtitle{font-size:clamp(22px,5vw,28px)}.grid{gap:11px}.tile{border-radius:24px}}
+@media(prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+</head>
+<body>
+<main aria-label="Money Tracker app launcher">
+<header class="brand">
+<svg class="brand-mark" viewBox="0 0 160 160" role="img" aria-label="Money Tracker finance icon">
+<defs>
+ <linearGradient id="headerGlass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#063947"/><stop offset=".52" stop-color="#031821"/><stop offset="1" stop-color="#003d31"/></linearGradient>
+ <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#53ffc0"/><stop offset="1" stop-color="#00d77f"/></linearGradient>
+ <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00d7ff"/><stop offset=".5" stop-color="#6bffd5"/><stop offset="1" stop-color="#00db79"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff0a0"/><stop offset="1" stop-color="#ffc332"/></linearGradient>
+ <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<rect x="8" y="8" width="144" height="144" rx="39" fill="#00ffc0" opacity=".2" filter="url(#soft)"/>
+<rect x="7" y="7" width="146" height="146" rx="40" fill="url(#headerGlass)" stroke="url(#rim)" stroke-width="2"/>
+<rect x="10" y="10" width="140" height="140" rx="37" fill="none" stroke="rgba(255,255,255,.12)"/>
+<rect x="29" y="81" width="22" height="45" rx="7" fill="url(#bar)"/>
+<rect x="60" y="57" width="22" height="69" rx="7" fill="url(#bar)"/>
+<rect x="91" y="69" width="22" height="57" rx="7" fill="url(#bar)"/>
+<circle cx="111" cy="42" r="23" fill="#ffc845" opacity=".25" filter="url(#soft)"/>
+<circle cx="111" cy="42" r="21" fill="url(#gold)" stroke="#fff3b5" stroke-width="1.2"/>
+<path d="M111 31v22M100 42h22" stroke="#3d3004" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<div><h1>Money Tracker</h1><p class="subtitle">Dashboard</p></div>
+</header>
+<nav class="grid" aria-label="App links">
+<a class="tile dashboard" href="https://script.google.com/macros/s/AKfycbzGC0qvGpfZ8OmwmdCT6fKiFZTBgW0S2AKghqW1k3leFL5cQjsp-z3P3H3z0fF-NV1V/exec" target="_blank" rel="noopener noreferrer" aria-label="Open Dashboard">
+<svg viewBox="0 0 180 180" role="img" aria-hidden="true">
+<defs><linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fefefe"/><stop offset="1" stop-color="#dcebf6"/></linearGradient><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#36567f"/><stop offset=".5" stop-color="#102c4d"/><stop offset="1" stop-color="#06182c"/></linearGradient><linearGradient id="coin" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff17c"/><stop offset="1" stop-color="#ff9f00"/></linearGradient></defs>
+<rect x="13" y="15" width="151" height="119" rx="19" fill="url(#metal)" stroke="#7bdcff" stroke-width="2"/><rect x="20" y="22" width="137" height="104" rx="13" fill="url(#screen)"/><rect x="27" y="31" width="82" height="87" rx="5" fill="#f5f9ff"/>
+<path d="M33 98L51 80 65 85 82 62 99 48" fill="none" stroke="#02b75e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M86 48h13v13" fill="none" stroke="#02b75e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="33" y="101" width="12" height="13" rx="2" fill="#ff4054"/><rect x="48" y="89" width="12" height="25" rx="2" fill="#ff9c2d"/><rect x="63" y="79" width="12" height="35" rx="2" fill="#ffc72f"/><rect x="78" y="68" width="12" height="46" rx="2" fill="#0ac279"/><rect x="93" y="56" width="12" height="58" rx="2" fill="#238af0"/>
+<rect x="114" y="35" width="36" height="65" rx="7" fill="#f4f9ff" stroke="#cbdde9"/><circle cx="132" cy="57" r="13" fill="#11c77a"/><path d="M132 44a13 13 0 0 1 13 13h-13z" fill="#ff4653"/><path d="M132 57l9 9A13 13 0 0 1 132 70z" fill="#ff4653"/><circle cx="121" cy="82" r="3.5" fill="#0ec478"/><rect x="128" y="79" width="16" height="5" rx="2.5" fill="#93a8bf"/><circle cx="121" cy="92" r="3.5" fill="#ff3c45"/><rect x="128" y="89" width="16" height="5" rx="2.5" fill="#93a8bf"/>
+<path d="M70 136h38l8 10H60z" fill="url(#metal)"/><rect x="54" y="145" width="71" height="6" rx="3" fill="#142c49"/>
+<ellipse cx="123" cy="134" rx="20" ry="7" fill="#dd8000"/><path d="M103 125h40v10c0 7-40 7-40 0z" fill="#ffb11d" stroke="#f58c00" stroke-width="1.5"/><ellipse cx="123" cy="125" rx="20" ry="7" fill="#ffcf45" stroke="#ffd966" stroke-width="1.5"/><circle cx="139" cy="140" r="19" fill="url(#coin)" stroke="#fff0a0" stroke-width="2"/><circle cx="139" cy="140" r="14" fill="none" stroke="#dd8500" stroke-width="1.5"/><path d="M144 133c-2-4-10-3-10 1 0 5 10 3 10 8 0 4-7 6-11 1M139 130v20" fill="none" stroke="#fff0a0" stroke-width="2.4" stroke-linecap="round"/>
+</svg></a>
+<a class="tile sheets" href="https://docs.google.com/spreadsheets/d/1WLIRo-jHN1IIBQTnGeKp9rsh-a0ntzjDt35XrKXHN-Q/edit?gid=34336380#gid=34336380" target="_blank" rel="noopener noreferrer" aria-label="Open Google Sheets">
+<svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="sheetIcon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15c879"/><stop offset="1" stop-color="#008746"/></linearGradient></defs>
+<rect x="24" y="18" width="132" height="144" rx="28" fill="#f9ffff"/><path d="M61 43h46l26 26v72a6 6 0 0 1-6 6H61a6 6 0 0 1-6-6V49a6 6 0 0 1 6-6z" fill="url(#sheetIcon)"/><path d="M107 43v21a5 5 0 0 0 5 5h21z" fill="#9ef1c9"/><rect x="70" y="82" width="50" height="39" rx="2" fill="none" stroke="#fff" stroke-width="4"/><path d="M70 95h50M70 108h50M86 82v39M103 82v39" stroke="#fff" stroke-width="3.5"/></svg></a>
+<a class="tile line" href="https://manager.line.biz/" target="_blank" rel="noopener noreferrer" aria-label="Open LINE Official Account Manager">
+<svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="lineBox" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2cff68"/><stop offset="1" stop-color="#00bb41"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#lineBox)" stroke="#55ff83" stroke-width="1.5"/><path d="M90 49c-28 0-50 18-50 42 0 18 13 33 33 39l-2 18c0 3 3 4 6 2l21-17c25-3 42-20 42-42 0-24-22-42-50-42z" fill="#fff"/><text x="90" y="97" font-family="Arial,sans-serif" font-weight="800" font-size="24" fill="#06c755" text-anchor="middle">LINE</text></svg></a>
+<a class="tile make" href="https://www.make.com/en" target="_blank" rel="noopener noreferrer" aria-label="Open Make">
+<svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="makeIcon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ed3dff"/><stop offset=".55" stop-color="#a500ff"/><stop offset="1" stop-color="#6900e8"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#makeIcon)" stroke="#ec83ff" stroke-width="1.5"/><path d="M54 119L78 61q2-5 7-3l8 4q4 2 2 6l-24 56q-2 5-7 3l-8-4q-4-2-2-4z" fill="#fff"/><path d="M83 121l16-61q1-5 6-4l10 2q4 1 3 6l-16 61q-1 5-6 4l-10-2q-4-1-3-6z" fill="#fff"/><path d="M121 60h9q5 0 5 5v57q0 5-5 5h-9q-5 0-5-5V65q0-5 5-5z" fill="#fff"/></svg></a>
+</nav>
+</main>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>
