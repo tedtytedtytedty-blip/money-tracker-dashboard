@@ -106,21 +106,21 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
       x, y: startY ?? -rand(Math.max(1, height)),
       count, chars,
       // Pixels per second keeps movement continuous and independent of frame rate.
-      speed: 52 + Math.random() * 62,
+      speed: 88 + Math.random() * 72,
       charTimer: 0
     };
   }
 
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.0);
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = Math.max(1, Math.floor(width * dpr));
     canvas.height = Math.max(1, Math.floor(height * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    fontSize = width < 420 ? 15 : 17;
+    fontSize = width < 420 ? 14 : 16;
     // Dense columns with alternating gaps make the rain read as streams, not scan lines.
-    const spacing = width < 420 ? 16 : 19;
+    const spacing = width < 420 ? 14 : 17;
     streams = [];
     for (let x = 2; x < width; x += spacing) {
       if (Math.random() < .12) continue;
@@ -147,11 +147,11 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 
   function frame(now) {
     if (!running || document.hidden) { raf = 0; return; }
-    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 1 / 60;
+    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.033) : 1 / 60;
     lastFrame = now;
 
     // Render every animation frame; delta-time motion avoids the stop-start look.
-    ctx.fillStyle = "rgba(0, 12, 8, .105)";
+    ctx.fillStyle = "rgba(0, 12, 8, .16)";
     ctx.fillRect(0, 0, width, height);
     ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
@@ -159,7 +159,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
     for (const stream of streams) {
       stream.y += stream.speed * dt;
       stream.charTimer += dt;
-      if (stream.charTimer > 0.075) {
+      if (stream.charTimer > 0.09) {
         stream.charTimer = 0;
         if (Math.random() < .72) stream.chars[0] = pick();
         if (Math.random() < .55) {
@@ -188,7 +188,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 
       if (stream.y - stream.count * fontSize > height && Math.random() > .12) {
         stream.y = -rand(18) * fontSize;
-        stream.speed = 52 + Math.random() * 62;
+        stream.speed = 88 + Math.random() * 72;
         stream.count = 10 + rand(17);
         stream.chars = Array.from({length: stream.count}, () => pick());
       }
