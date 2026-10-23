@@ -37,8 +37,8 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 .make{--tile-a:rgba(132,0,255,.68);--tile-b:rgba(36,16,116,.8);--edge:rgba(223,78,255,.88);--glow:rgba(148,0,255,.2);--icon-top:rgba(231,86,255,.25);--icon-bottom:rgba(25,0,73,.78);--icon-edge:rgba(235,136,255,.66)}
 @media(min-width:560px){main{justify-content:center;padding-top:18px}.grid{width:min(85%,520px);gap:13px}.tile{aspect-ratio:.94}.tile svg{max-width:250px;max-height:250px}}
 @media(max-height:760px){main{gap:clamp(8px,1.3vh,14px);padding-top:6px;padding-bottom:max(16px,env(safe-area-inset-bottom))}.brand{transform:translateY(-10px)}.brand-mark{width:clamp(130px,30vh,190px);height:clamp(130px,30vh,190px)}h1{font-size:clamp(29px,7.5vw,39px)}.subtitle{font-size:clamp(23px,5.8vw,31px)}.grid{width:min(85%,460px);gap:9px}.tile{border-radius:24px;aspect-ratio:.98}.tile svg{max-width:210px;max-height:210px}}
-.matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.42;contain:strict}
-@media(prefers-reduced-motion:reduce){.tile,.tile svg,.tile:before{animation:none!important;transition:none!important}.matrix-canvas{opacity:.22}.tile:active,.tile:hover,.tile:active svg,.tile:hover svg{transform:none}}
+.matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.78;contain:strict}
+@media(prefers-reduced-motion:reduce){.tile,.tile svg,.tile:before{animation:none!important;transition:none!important}.matrix-canvas{opacity:.42}.tile:active,.tile:hover,.tile:active svg,.tile:hover svg{transform:none}}
 </style>
 </head>
 <body>
@@ -91,69 +91,116 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
   if (!canvas) return;
   const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
   if (!ctx) return;
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const glyphs = "012345789ABCDEFGHIJKLMNOPQRSTUVWXYZｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ";
-  let width = 0, height = 0, columns = [], fontSize = 15, timer = 0, lastFrame = 0, running = false;
+  // Adapted from the stream/tail approach in yeutterg's Processing Matrix sketch.
+  const glyphs = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ";
+  let width = 0, height = 0, streams = [], fontSize = 15, raf = 0, lastFrame = 0, running = false;
   const rand = (max) => Math.floor(Math.random() * max);
+  const pick = () => glyphs[rand(glyphs.length)];
+
+  function makeStream(x, startY) {
+    const count = 9 + rand(17);
+    const chars = Array.from({length: count}, () => pick());
+    return { x, y: startY ?? -rand(Math.max(1, height)), count, chars,
+      speed: .45 + Math.random() * 1.2, tick: rand(5), interval: 2 + rand(5) };
+  }
+
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
-    width = window.innerWidth; height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
     canvas.width = Math.max(1, Math.floor(width * dpr));
     canvas.height = Math.max(1, Math.floor(height * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    fontSize = width < 420 ? 14 : 16;
-    columns = Array.from({ length: Math.ceil(width / fontSize) }, () => ({
-      y: Math.random() * (height / fontSize),
-      speed: .22 + Math.random() * .65,
-      length: 7 + rand(17)
-    }));
+    fontSize = width < 420 ? 15 : 17;
+    // Dense columns with alternating gaps make the rain read as streams, not scan lines.
+    const spacing = width < 420 ? 16 : 19;
+    streams = [];
+    for (let x = 2; x < width; x += spacing) {
+      if (Math.random() < .12) continue;
+      streams.push(makeStream(x, Math.random() * height));
+    }
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "rgba(0, 12, 8, .96)";
+    ctx.fillRect(0, 0, width, height);
     if (reduceMotion) drawStatic();
   }
+
   function drawStatic() {
     ctx.font = fontSize + "px monospace";
-    columns.forEach((col, i) => {
-      if (i % 3) return;
-      const y = (col.y * fontSize) % Math.max(height, 1);
-      ctx.fillStyle = "rgba(0,255,112,.34)";
-      ctx.fillText(glyphs[rand(glyphs.length)], i * fontSize, y);
+    ctx.textBaseline = "top";
+    streams.forEach((stream, si) => {
+      for (let i = 0; i < stream.count; i++) {
+        const y = stream.y - i * fontSize;
+        if (y < 0 || y > height || si % 2) continue;
+        ctx.fillStyle = i === 0 ? "rgba(220,255,231,.9)" : "rgba(0,255,105," + Math.max(.12, .72 - i * .035) + ")";
+        ctx.fillText(stream.chars[i], stream.x, y);
+      }
     });
   }
+
   function frame(now) {
-    if (!running || document.hidden) { timer = 0; return; }
-    if (now - lastFrame < 42) { timer = requestAnimationFrame(frame); return; }
+    if (!running || document.hidden) { raf = 0; return; }
+    if (now - lastFrame < 40) { raf = requestAnimationFrame(frame); return; }
     lastFrame = now;
-    ctx.fillStyle = "rgba(1,17,13,.105)";
+    // Short fade keeps bright trails visible without filling the whole screen with green haze.
+    ctx.fillStyle = "rgba(0, 12, 8, .18)";
     ctx.fillRect(0, 0, width, height);
     ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
-    for (let i = 0; i < columns.length; i++) {
-      const col = columns[i], x = i * fontSize, y = col.y * fontSize;
-      if (Math.random() < .14) {
-        ctx.fillStyle = "rgba(210,255,224,.92)";
-        ctx.fillText(glyphs[rand(glyphs.length)], x, y);
-      } else {
-        ctx.fillStyle = i % 4 === 0 ? "rgba(45,255,130,.78)" : "rgba(0,211,103,.58)";
-        ctx.fillText(glyphs[rand(glyphs.length)], x, y);
+
+    for (const stream of streams) {
+      stream.tick++;
+      if (stream.tick >= stream.interval) {
+        stream.tick = 0;
+        stream.y += fontSize * stream.speed;
+        if (Math.random() < .28) stream.chars[0] = pick();
+        if (Math.random() < .16) {
+          const index = 1 + rand(stream.count - 1);
+          stream.chars[index] = pick();
+        }
       }
-      col.y += col.speed;
-      if (y > height && Math.random() > .975) {
-        col.y = -rand(24);
-        col.speed = .22 + Math.random() * .65;
+      for (let i = 0; i < stream.count; i++) {
+        const y = stream.y - i * fontSize;
+        if (y < -fontSize || y > height + fontSize) continue;
+        if (i === 0) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "rgba(65,255,145,.9)";
+          ctx.fillStyle = "rgba(235,255,240,.98)";
+        } else {
+          ctx.shadowBlur = i < 4 ? 5 : 0;
+          ctx.shadowColor = "rgba(0,255,105,.5)";
+          const alpha = Math.max(.1, .88 - i * .045);
+          ctx.fillStyle = i < 4
+            ? "rgba(36,255,119," + alpha + ")"
+            : "rgba(0,196,76," + alpha + ")";
+        }
+        ctx.fillText(stream.chars[i], stream.x, y);
+      }
+      if (stream.y - stream.count * fontSize > height && Math.random() > .25) {
+        stream.y = -rand(16) * fontSize;
+        stream.speed = .45 + Math.random() * 1.2;
+        stream.count = 9 + rand(17);
+        stream.interval = 2 + rand(5);
+        stream.chars = Array.from({length: stream.count}, () => pick());
       }
     }
-    timer = requestAnimationFrame(frame);
+    ctx.shadowBlur = 0;
+    raf = requestAnimationFrame(frame);
   }
+
   function start() {
     if (reduceMotion || document.hidden || running) return;
     running = true;
-    if (!timer) timer = requestAnimationFrame(frame);
+    if (!raf) raf = requestAnimationFrame(frame);
   }
   function stop() {
     running = false;
-    if (timer) cancelAnimationFrame(timer);
-    timer = 0;
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
   }
+
   resize();
   if (!reduceMotion) start();
   document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
@@ -163,6 +210,6 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
 }
-</script>
+</script>>
 </body>
 </html>
