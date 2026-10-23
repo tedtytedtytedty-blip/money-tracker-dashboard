@@ -100,10 +100,15 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
   const pick = () => glyphs[rand(glyphs.length)];
 
   function makeStream(x, startY) {
-    const count = 9 + rand(17);
+    const count = 10 + rand(17);
     const chars = Array.from({length: count}, () => pick());
-    return { x, y: startY ?? -rand(Math.max(1, height)), count, chars,
-      speed: .45 + Math.random() * 1.2, tick: rand(5), interval: 2 + rand(5) };
+    return {
+      x, y: startY ?? -rand(Math.max(1, height)),
+      count, chars,
+      // Pixels per second keeps movement continuous and independent of frame rate.
+      speed: 52 + Math.random() * 62,
+      charTimer: 0
+    };
   }
 
   function resize() {
@@ -142,47 +147,49 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 
   function frame(now) {
     if (!running || document.hidden) { raf = 0; return; }
-    if (now - lastFrame < 40) { raf = requestAnimationFrame(frame); return; }
+    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 1 / 60;
     lastFrame = now;
-    // Short fade keeps bright trails visible without filling the whole screen with green haze.
-    ctx.fillStyle = "rgba(0, 12, 8, .18)";
+
+    // Render every animation frame; delta-time motion avoids the stop-start look.
+    ctx.fillStyle = "rgba(0, 12, 8, .105)";
     ctx.fillRect(0, 0, width, height);
     ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
 
     for (const stream of streams) {
-      stream.tick++;
-      if (stream.tick >= stream.interval) {
-        stream.tick = 0;
-        stream.y += fontSize * stream.speed;
-        if (Math.random() < .28) stream.chars[0] = pick();
-        if (Math.random() < .16) {
+      stream.y += stream.speed * dt;
+      stream.charTimer += dt;
+      if (stream.charTimer > 0.075) {
+        stream.charTimer = 0;
+        if (Math.random() < .72) stream.chars[0] = pick();
+        if (Math.random() < .55) {
           const index = 1 + rand(stream.count - 1);
           stream.chars[index] = pick();
         }
       }
+
       for (let i = 0; i < stream.count; i++) {
         const y = stream.y - i * fontSize;
         if (y < -fontSize || y > height + fontSize) continue;
         if (i === 0) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = "rgba(65,255,145,.9)";
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = "rgba(65,255,145,.85)";
           ctx.fillStyle = "rgba(235,255,240,.98)";
         } else {
-          ctx.shadowBlur = i < 4 ? 5 : 0;
-          ctx.shadowColor = "rgba(0,255,105,.5)";
-          const alpha = Math.max(.1, .88 - i * .045);
+          ctx.shadowBlur = i < 4 ? 3 : 0;
+          ctx.shadowColor = "rgba(0,255,105,.45)";
+          const alpha = Math.max(.1, .86 - i * .045);
           ctx.fillStyle = i < 4
             ? "rgba(36,255,119," + alpha + ")"
             : "rgba(0,196,76," + alpha + ")";
         }
         ctx.fillText(stream.chars[i], stream.x, y);
       }
-      if (stream.y - stream.count * fontSize > height && Math.random() > .25) {
-        stream.y = -rand(16) * fontSize;
-        stream.speed = .45 + Math.random() * 1.2;
-        stream.count = 9 + rand(17);
-        stream.interval = 2 + rand(5);
+
+      if (stream.y - stream.count * fontSize > height && Math.random() > .12) {
+        stream.y = -rand(18) * fontSize;
+        stream.speed = 52 + Math.random() * 62;
+        stream.count = 10 + rand(17);
         stream.chars = Array.from({length: stream.count}, () => pick());
       }
     }
