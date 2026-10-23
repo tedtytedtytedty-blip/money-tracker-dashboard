@@ -22,18 +22,22 @@ main{width:100%;max-width:520px;min-height:100svh;padding:clamp(20px,4vh,42px) 2
 h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:clamp(30px,8.4vw,42px);text-shadow:0 2px 16px rgba(255,255,255,.08)}
 .subtitle{margin:1px 0 0;color:#c4cdd1;font-weight:300;letter-spacing:.015em;font-size:clamp(25px,6.3vw,32px);line-height:1.05}
 .grid{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.tile{aspect-ratio:1.02;min-width:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:clamp(24px,7vw,34px);border:1px solid var(--edge);background:linear-gradient(145deg,var(--tile-a),var(--tile-b) 55%,rgba(1,19,26,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -14px 35px rgba(0,0,0,.19),0 12px 30px rgba(0,0,0,.22),0 0 23px var(--glow);transition:transform .16s ease,filter .16s ease;text-decoration:none;isolation:isolate}
-.tile:before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.18),transparent 48%),linear-gradient(125deg,transparent 25%,rgba(255,255,255,.06) 48%,transparent 69%);z-index:-1}
-.tile:after{content:"";position:absolute;inset:8px;border-radius:inherit;border:1px solid rgba(255,255,255,.07);pointer-events:none}
-.tile:active{transform:scale(.975);filter:brightness(1.12)}
-.tile svg{width:78%;height:78%;max-width:190px;max-height:190px;overflow:visible;filter:drop-shadow(0 9px 11px rgba(0,0,0,.24))}
-.dashboard{--tile-a:rgba(0,108,220,.8);--tile-b:rgba(0,196,171,.48);--edge:rgba(61,224,255,.92);--glow:rgba(0,193,255,.17)}
-.sheets{--tile-a:rgba(0,180,100,.68);--tile-b:rgba(0,110,84,.58);--edge:rgba(53,255,166,.8);--glow:rgba(0,237,128,.15)}
-.line{--tile-a:rgba(0,216,78,.62);--tile-b:rgba(0,95,69,.7);--edge:rgba(69,255,144,.8);--glow:rgba(0,255,99,.16)}
-.make{--tile-a:rgba(132,0,255,.68);--tile-b:rgba(36,16,116,.8);--edge:rgba(223,78,255,.88);--glow:rgba(148,0,255,.2)}
+.tile{aspect-ratio:1.02;min-width:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:clamp(24px,7vw,34px);border:1px solid var(--edge);background:linear-gradient(145deg,var(--tile-a),var(--tile-b) 55%,rgba(1,19,26,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -14px 35px rgba(0,0,0,.19),0 12px 30px rgba(0,0,0,.22),0 0 23px var(--glow);transition:transform 160ms cubic-bezier(.2,.8,.2,1);text-decoration:none;isolation:isolate;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.tile:before{content:"";position:absolute;inset:1px;border-radius:inherit;background:radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.22),transparent 48%),linear-gradient(125deg,transparent 25%,rgba(255,255,255,.08) 48%,transparent 69%);z-index:0;opacity:.8;transition:opacity 140ms ease;pointer-events:none}
+.tile:after{content:"";position:absolute;inset:8px;border-radius:inherit;border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),inset 0 -12px 22px rgba(0,0,0,.12);pointer-events:none;z-index:0}
+.tile:active{transform:translateY(2px) scale(.965)}
+.tile:active:before{opacity:1}
+.tile:active svg{transform:translateY(2px) scale(.975)}
+.tile:focus-visible{outline:2px solid rgba(255,255,255,.95);outline-offset:4px}
+@media (hover:hover) and (pointer:fine){.tile:hover{transform:translateY(-3px) scale(1.012)}.tile:hover:before{opacity:1}.tile:hover svg{transform:translateY(-2px)}}
+.tile svg{width:84%;height:84%;max-width:190px;max-height:190px;overflow:visible;position:relative;z-index:1;padding:3.5%;border-radius:27%;border:1px solid var(--icon-edge);background:linear-gradient(145deg,var(--icon-top),var(--icon-bottom));box-shadow:inset 0 1px 0 rgba(255,255,255,.27),inset 0 -8px 14px rgba(0,0,0,.18),0 2px 0 rgba(255,255,255,.14),0 9px 15px rgba(0,0,0,.24),0 17px 22px rgba(0,0,0,.16);filter:drop-shadow(0 2px 0 rgba(255,255,255,.08));transform:translateY(-1px);transition:transform 160ms cubic-bezier(.2,.8,.2,1)}
+.dashboard{--tile-a:rgba(0,108,220,.8);--tile-b:rgba(0,196,171,.48);--edge:rgba(61,224,255,.92);--glow:rgba(0,193,255,.17);--icon-top:rgba(41,195,255,.25);--icon-bottom:rgba(0,32,77,.65);--icon-edge:rgba(116,228,255,.68)}
+.sheets{--tile-a:rgba(0,180,100,.68);--tile-b:rgba(0,110,84,.58);--edge:rgba(53,255,166,.8);--glow:rgba(0,237,128,.15);--icon-top:rgba(76,255,176,.22);--icon-bottom:rgba(0,46,37,.68);--icon-edge:rgba(111,255,185,.62)}
+.line{--tile-a:rgba(0,216,78,.62);--tile-b:rgba(0,95,69,.7);--edge:rgba(69,255,144,.8);--glow:rgba(0,255,99,.16);--icon-top:rgba(91,255,119,.2);--icon-bottom:rgba(0,51,30,.72);--icon-edge:rgba(120,255,148,.62)}
+.make{--tile-a:rgba(132,0,255,.68);--tile-b:rgba(36,16,116,.8);--edge:rgba(223,78,255,.88);--glow:rgba(148,0,255,.2);--icon-top:rgba(231,86,255,.25);--icon-bottom:rgba(25,0,73,.78);--icon-edge:rgba(235,136,255,.66)}
 @media(min-width:560px){main{justify-content:center;padding-top:28px}.grid{gap:18px}.tile{aspect-ratio:1.12}}
 @media(max-height:760px){main{gap:clamp(14px,2.6vh,24px);padding-top:18px}.brand-mark{width:clamp(86px,22vh,124px);height:clamp(86px,22vh,124px)}h1{font-size:clamp(28px,7vw,36px)}.subtitle{font-size:clamp(22px,5vw,28px)}.grid{gap:11px}.tile{border-radius:24px}}
-@media(prefers-reduced-motion:reduce){.tile{transition:none}}
+@media(prefers-reduced-motion:reduce){.tile,.tile svg,.tile:before{transition:none!important}.tile:active,.tile:hover,.tile:active svg,.tile:hover svg{transform:none}}
 </style>
 </head>
 <body>
