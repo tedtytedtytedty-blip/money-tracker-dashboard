@@ -1,18 +1,29 @@
 {
+  "id": "./",
   "name": "Money Tracker Dashboard",
   "short_name": "Money Tracker",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
   "background_color": "#031719",
   "theme_color": "#031719",
   "description": "Money Tracker Dashboard app shortcuts",
+  "categories": ["finance", "utilities"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "./icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
