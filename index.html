@@ -106,7 +106,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
       x, y: startY ?? -rand(Math.max(1, height)),
       count, chars,
       // Pixels per second keeps movement continuous and independent of frame rate.
-      speed: 88 + Math.random() * 72,
+      speed: 125 + Math.random() * 95,
       charTimer: 0
     };
   }
@@ -123,7 +123,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
     const spacing = width < 420 ? 14 : 17;
     streams = [];
     for (let x = 2; x < width; x += spacing) {
-      if (Math.random() < .12) continue;
+      if (Math.random() < .06) continue;
       streams.push(makeStream(x, Math.random() * height));
     }
     ctx.clearRect(0, 0, width, height);
@@ -147,11 +147,13 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 
   function frame(now) {
     if (!running || document.hidden) { raf = 0; return; }
-    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.033) : 1 / 60;
+    const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 1 / 60;
     lastFrame = now;
 
     // Render every animation frame; delta-time motion avoids the stop-start look.
-    ctx.fillStyle = "rgba(0, 12, 8, .16)";
+    // Fade trails in proportion to elapsed time, so the rain looks consistent at 30–120 Hz.
+    const fadeAlpha = 1 - Math.pow(0.94, dt * 60);
+    ctx.fillStyle = "rgba(0, 12, 8, " + fadeAlpha.toFixed(3) + ")";
     ctx.fillRect(0, 0, width, height);
     ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
@@ -188,7 +190,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 
       if (stream.y - stream.count * fontSize > height && Math.random() > .12) {
         stream.y = -rand(18) * fontSize;
-        stream.speed = 88 + Math.random() * 72;
+        stream.speed = 125 + Math.random() * 95;
         stream.count = 10 + rand(17);
         stream.chars = Array.from({length: stream.count}, () => pick());
       }
