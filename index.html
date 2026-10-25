@@ -39,14 +39,13 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 @media(min-width:560px){main{justify-content:center;padding-top:18px}.grid{width:min(85%,520px);gap:13px}.tile{aspect-ratio:.94}.tile svg{max-width:250px;max-height:250px}}
 @media(max-height:760px){main{gap:clamp(8px,1.3vh,14px);padding-top:6px;padding-bottom:max(16px,env(safe-area-inset-bottom))}.brand{transform:translateY(-10px)}.brand-mark{width:clamp(130px,30vh,190px);height:clamp(130px,30vh,190px)}h1{font-size:clamp(29px,7.5vw,39px)}.subtitle{font-size:clamp(23px,5.8vw,31px)}.grid{width:min(85%,460px);gap:9px}.tile{border-radius:24px;aspect-ratio:.98}.tile svg{max-width:210px;max-height:210px}}
 .
-.entry{--tile-a:rgba(0,176,157,.8);--tile-b:rgba(0,51,72,.96);--edge:rgba(63,255,211,.9);--glow:rgba(0,241,196,.22);grid-column:1/-1;aspect-ratio:auto;min-height:112px;border-radius:26px;display:flex;flex-direction:row;justify-content:center;gap:16px;padding:12px 22px}
-.tile.entry svg{width:76px;height:76px;max-width:none;max-height:none;flex:0 0 76px;overflow:visible;position:relative;z-index:1;transform:none;filter:drop-shadow(0 7px 5px rgba(0,0,0,.25))}
-.entry-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;position:relative;z-index:1;text-align:left}
-.entry-title{font-size:clamp(17px,4.6vw,22px);font-weight:750;letter-spacing:-.025em;color:#f7ffff;line-height:1.12}
-.entry-subtitle{font-size:clamp(11px,3vw,13px);font-weight:500;letter-spacing:.01em;color:#a8f9e7;line-height:1.25}
-@media(max-height:760px){.entry{min-height:94px;padding:9px 18px;gap:12px}.tile.entry svg{width:66px;height:66px;flex-basis:66px}.entry-title{font-size:18px}.entry-subtitle{font-size:11px}}
-@media(min-width:560px){.entry{min-height:118px}.tile.entry svg{width:82px;height:82px;flex-basis:82px}}
-
+.entry{--tile-a:rgba(210,47,123,.68);--tile-b:rgba(66,18,77,.88);--edge:rgba(255,123,192,.82);--glow:rgba(255,54,157,.17);--icon-top:rgba(255,163,217,.24);--icon-bottom:rgba(50,4,47,.68);--icon-edge:rgba(255,178,222,.66)}
+.backup-mini-wrap{width:100%;display:flex;justify-content:center;align-items:center;position:relative;z-index:2;flex:0 0 auto;margin-top:-2px}
+.backup-mini{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(115,192,226,.28);border-radius:12px;background:rgba(2,25,34,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 4px 11px rgba(0,0,0,.22);opacity:.76;text-decoration:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform 130ms ease,opacity 130ms ease}
+.backup-mini img{display:block;width:36px;height:36px;object-fit:contain;pointer-events:none}
+.backup-mini:active{transform:scale(.91);opacity:.96}
+.backup-mini:focus-visible{outline:2px solid rgba(255,255,255,.95);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.backup-mini:hover{opacity:1;transform:translateY(-1px)}}
 matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.78;contain:strict}
 @media(prefers-reduced-motion:reduce){.tile,.tile svg,.tile:before{animation:none!important;transition:none!important}.matrix-canvas{opacity:.62}.tile:active,.tile:hover,.tile:active svg,.tile:hover svg{transform:none}}
 </style>
@@ -91,31 +90,13 @@ matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-ev
 <rect x="24" y="18" width="132" height="144" rx="28" fill="#f9ffff"/><path d="M61 43h46l26 26v72a6 6 0 0 1-6 6H61a6 6 0 0 1-6-6V49a6 6 0 0 1 6-6z" fill="url(#sheetIcon)"/><path d="M107 43v21a5 5 0 0 0 5 5h21z" fill="#9ef1c9"/><rect x="70" y="82" width="50" height="39" rx="2" fill="none" stroke="#fff" stroke-width="4"/><path d="M70 95h50M70 108h50M86 82v39M103 82v39" stroke="#fff" stroke-width="3.5"/></svg></a>
 <a class="tile line" href="https://lin.ee/Tv43Fj9" target="_blank" rel="noopener noreferrer" aria-label="Open Money Tracker LINE Official Account">
 <svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="lineBox" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2cff68"/><stop offset="1" stop-color="#00bb41"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#lineBox)" stroke="#55ff83" stroke-width="1.5"/><path d="M90 49c-28 0-50 18-50 42 0 18 13 33 33 39l-2 18c0 3 3 4 6 2l21-17c25-3 42-20 42-42 0-24-22-42-50-42z" fill="#fff"/><text x="90" y="97" font-family="Arial,sans-serif" font-weight="800" font-size="24" fill="#06c755" text-anchor="middle">LINE</text></svg></a>
-
-
-<a class="tile backup" href="https://drive.google.com/drive/folders/1_rs97qRjy1SAw_SuGJyuCG4Q8CF9cim0" target="_blank" rel="noopener noreferrer" aria-label="Open Backup folder" title="Backup folder">
-<img class="tile-icon" src="./icons/backup.svg" alt="" aria-hidden="true" width="256" height="256"></a>
-<a class="tile entry" href="https://script.google.com/macros/s/AKfycbz3fkbBgqKROrEy4hq3vdLrS930Syr-MiEVWL4x5SiCP-VMVbPZX31zQHIq7oKrzKLn/exec" target="_blank" rel="noopener noreferrer" aria-label="Open transaction entry form" title="บันทึกรายการ">
-<svg viewBox="0 0 180 180" role="img" aria-hidden="true">
-<defs>
-<linearGradient id="entryPaper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#d9fff5"/></linearGradient>
-<linearGradient id="entryPencil" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9aff68"/><stop offset="1" stop-color="#10df9a"/></linearGradient>
-</defs>
-<rect x="28" y="17" width="100" height="146" rx="19" fill="url(#entryPaper)" stroke="#8dffe1" stroke-width="2"/>
-<rect x="43" y="33" width="70" height="10" rx="5" fill="#0bc88d"/>
-<rect x="43" y="60" width="12" height="12" rx="3" fill="#0bc88d"/>
-<rect x="63" y="62" width="48" height="6" rx="3" fill="#80bbae"/>
-<rect x="43" y="84" width="12" height="12" rx="3" fill="#0bc88d"/>
-<rect x="63" y="86" width="39" height="6" rx="3" fill="#80bbae"/>
-<rect x="43" y="108" width="12" height="12" rx="3" fill="#0bc88d"/>
-<rect x="63" y="110" width="46" height="6" rx="3" fill="#80bbae"/>
-<path d="M101 133l32-32 16 16-32 32-18 4z" fill="url(#entryPencil)" stroke="#e1fff5" stroke-width="2" stroke-linejoin="round"/>
-<path d="M133 101l8-8q4-4 8 0l8 8q4 4 0 8l-8 8z" fill="#ffe278" stroke="#fff0a8" stroke-width="2"/>
-<path d="M99 149l5 0-2-5z" fill="#ffe5b1"/>
-</svg>
-<span class="entry-copy"><span class="entry-title">บันทึกรายการ</span><span class="entry-subtitle">รายรับ · รายจ่าย · การลงทุน</span></span>
-</a>
+<a class="tile entry" href="https://script.google.com/macros/s/AKfycbz3fkbBgqKROrEy4hq3vdLrS930Syr-MiEVWL4x5SiCP-VMVbPZX31zQHIq7oKrzKLn/exec" target="_blank" rel="noopener noreferrer" aria-label="Open transaction entry form" title="บันทึกรายการ"><img class="tile-icon" src="./icons/entry.svg" alt="" aria-hidden="true" width="256" height="256"></a>
 </nav>
+<div class="backup-mini-wrap">
+<a class="backup-mini" href="https://drive.google.com/drive/folders/1_rs97qRjy1SAw_SuGJyuCG4Q8CF9cim0" target="_blank" rel="noopener noreferrer" aria-label="Open Backup folder" title="Backup folder">
+<img src="./icons/backup.svg" alt="" aria-hidden="true" width="36" height="36">
+</a>
+</div>
 </main>
 <script>
 (() => {
