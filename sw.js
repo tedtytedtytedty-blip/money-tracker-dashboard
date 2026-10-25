@@ -1,5 +1,5 @@
-const CACHE_NAME = "money-tracker-dashboard-v7";
-const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg", "./icons/backup.svg"];
+const CACHE_NAME = "money-tracker-dashboard-v8";
+const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg", "./icons/backup.svg", "./icons/entry.svg"];
 
 self.addEventListener("install", event => {
   event.waitUntil(
