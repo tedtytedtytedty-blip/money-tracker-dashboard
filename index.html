@@ -39,14 +39,15 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 @media(min-width:560px){main{justify-content:center;padding-top:18px}.grid{width:min(85%,520px);gap:13px}.tile{aspect-ratio:.94}.tile svg{max-width:250px;max-height:250px}}
 @media(max-height:760px){main{gap:clamp(8px,1.3vh,14px);padding-top:6px;padding-bottom:max(16px,env(safe-area-inset-bottom))}.brand{transform:translateY(-10px)}.brand-mark{width:clamp(130px,30vh,190px);height:clamp(130px,30vh,190px)}h1{font-size:clamp(29px,7.5vw,39px)}.subtitle{font-size:clamp(23px,5.8vw,31px)}.grid{width:min(85%,460px);gap:9px}.tile{border-radius:24px;aspect-ratio:.98}.tile svg{max-width:210px;max-height:210px}}
 .
-.entry{--tile-a:rgba(210,47,123,.68);--tile-b:rgba(66,18,77,.88);--edge:rgba(255,123,192,.82);--glow:rgba(255,54,157,.17);--icon-top:rgba(255,163,217,.24);--icon-bottom:rgba(50,4,47,.68);--icon-edge:rgba(255,178,222,.66)}
-.backup-mini-wrap{width:100%;display:flex;justify-content:center;align-items:center;position:relative;z-index:2;flex:0 0 auto;margin-top:-2px}
-.backup-mini{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(115,192,226,.28);border-radius:12px;background:rgba(2,25,34,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 4px 11px rgba(0,0,0,.22);opacity:.76;text-decoration:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform 130ms ease,opacity 130ms ease}
-.backup-mini img{display:block;width:36px;height:36px;object-fit:contain;pointer-events:none}
-.backup-mini:active{transform:scale(.91);opacity:.96}
+.entry{--tile-a:rgba(55,141,255,.82);--tile-b:rgba(75,20,93,.96);--edge:rgba(255,107,190,.98);--glow:rgba(245,55,164,.27);--icon-top:rgba(255,163,217,.26);--icon-bottom:rgba(50,4,47,.72);--icon-edge:rgba(255,178,222,.78)}
+.backup-mini-wrap{width:min(85vw,520px);display:flex;justify-content:center;align-items:center;position:relative;z-index:2;flex:0 0 auto;margin:0 auto;padding:1px 0 4px}
+.backup-mini{width:clamp(108px,28vw,124px);min-height:43px;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:5px 7px 5px 14px;border:1px solid rgba(62,177,255,.95);border-radius:14px;background:linear-gradient(145deg,rgba(13,99,167,.82),rgba(3,30,63,.97));box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 -8px 14px rgba(0,0,0,.24),0 4px 12px rgba(0,0,0,.24),0 0 17px rgba(0,125,255,.2);text-decoration:none;opacity:.94;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform 130ms ease,opacity 130ms ease}
+.backup-mini-label{font-size:13px;font-weight:750;letter-spacing:.01em;color:#e8f8ff;line-height:1}
+.backup-mini img{display:block;width:29px;height:29px;flex:0 0 29px;object-fit:contain;pointer-events:none;filter:drop-shadow(0 3px 2px rgba(0,0,0,.22))}
+.backup-mini:active{transform:scale(.94);opacity:1}
 .backup-mini:focus-visible{outline:2px solid rgba(255,255,255,.95);outline-offset:3px}
 @media (hover:hover) and (pointer:fine){.backup-mini:hover{opacity:1;transform:translateY(-1px)}}
-matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.78;contain:strict}
+.matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.78;contain:strict}
 @media(prefers-reduced-motion:reduce){.tile,.tile svg,.tile:before{animation:none!important;transition:none!important}.matrix-canvas{opacity:.62}.tile:active,.tile:hover,.tile:active svg,.tile:hover svg{transform:none}}
 
 /* Viewport-width guard: keep the launcher full-width even in installed/mobile webviews. */
@@ -108,7 +109,8 @@ main{grid-column:1!important;justify-self:center!important;align-self:center!imp
 </nav>
 <div class="backup-mini-wrap">
 <a class="backup-mini" href="https://drive.google.com/drive/folders/1_rs97qRjy1SAw_SuGJyuCG4Q8CF9cim0" target="_blank" rel="noopener noreferrer" aria-label="Open Backup folder" title="Backup folder">
-<img src="./icons/backup.svg" alt="" aria-hidden="true" width="36" height="36">
+<span class="backup-mini-label">Backup</span>
+<img src="./icons/backup.svg" alt="" aria-hidden="true" width="29" height="29">
 </a>
 </div>
 </main>
