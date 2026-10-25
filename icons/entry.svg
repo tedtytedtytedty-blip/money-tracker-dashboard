@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs>
+ <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7f5ff"/><stop offset="1" stop-color="#e7e5fa"/></linearGradient>
+ <linearGradient id="page" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#f0efff"/></linearGradient>
+ <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff4db8"/><stop offset="1" stop-color="#ed238b"/></linearGradient>
+ <linearGradient id="pen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f94188"/><stop offset="1" stop-color="#cf124c"/></linearGradient>
+ <linearGradient id="laptop" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#45416b"/><stop offset="1" stop-color="#24223f"/></linearGradient>
+</defs>
+<!-- laptop behind the checklist -->
+<path d="M38 78 Q38 68 49 68 H204 Q216 68 216 80 V200 H38Z" fill="#48426e"/>
+<rect x="30" y="84" width="196" height="123" rx="13" fill="#3187ff"/>
+<rect x="38" y="87" width="180" height="111" rx="8" fill="#62bcff"/>
+<!-- web checklist panel -->
+<rect x="48" y="25" width="178" height="173" rx="12" fill="url(#screen)" stroke="#d6d4f4" stroke-width="2"/>
+<path d="M48 37 Q48 25 60 25 H214 Q226 25 226 37 V48 H48Z" fill="url(#pink)"/>
+<circle cx="65" cy="36" r="4.5" fill="#ffcee9"/>
+<circle cx="79" cy="36" r="4.5" fill="#ffd9f0"/>
+<circle cx="93" cy="36" r="4.5" fill="#ffd9f0"/>
+<rect x="140" y="32" width="66" height="6" rx="3" fill="#ffd9f0"/>
+<!-- checklist rows -->
+<g fill="#4bcf72">
+ <rect x="64" y="58" width="27" height="23" rx="4"/>
+ <rect x="64" y="91" width="27" height="23" rx="4"/>
+ <rect x="64" y="124" width="27" height="23" rx="4"/>
+ <rect x="64" y="157" width="27" height="23" rx="4"/>
+</g>
+<g fill="none" stroke="#fff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M71 69l4 4 8-8"/>
+ <path d="M71 102l4 4 8-8"/>
+</g>
+<g fill="#b8b7e5">
+ <rect x="103" y="61" width="89" height="6" rx="3"/>
+ <rect x="103" y="69" width="68" height="4" rx="2"/>
+ <rect x="103" y="94" width="89" height="6" rx="3"/>
+ <rect x="103" y="102" width="69" height="4" rx="2"/>
+ <rect x="103" y="127" width="89" height="6" rx="3"/>
+ <rect x="103" y="160" width="89" height="6" rx="3"/>
+ <rect x="103" y="168" width="66" height="4" rx="2"/>
+</g>
+<!-- diagonal pink pencil on the right -->
+<g transform="rotate(25 201 133)">
+ <rect x="188" y="65" width="24" height="111" rx="5" fill="url(#pen)"/>
+ <path d="M188 70 Q188 61 200 61 Q212 61 212 70 V82 H188Z" fill="#34304f"/>
+ <path d="M188 80 H212 V88 H188Z" fill="#ff7ab5"/>
+ <path d="M188 176 H212 L200 201Z" fill="#f5c5c9"/>
+ <path d="M196 191 L204 191 L200 201Z" fill="#35304e"/>
+</g>
+<!-- laptop base and trackpad -->
+<path d="M12 207 H244 L236 226 Q233 232 223 232 H33 Q23 232 20 226Z" fill="url(#laptop)"/>
+<rect x="101" y="215" width="54" height="9" rx="4.5" fill="#d8d5ff"/>
+</svg>
