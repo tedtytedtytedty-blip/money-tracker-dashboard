@@ -100,7 +100,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
   let width = 0, height = 0, streams = [], raf = 0, lastFrame = 0, running = false;
   const rand = (max) => Math.floor(Math.random() * max);
   const pick = () => glyphs[rand(glyphs.length)];
-  const streamFontSize = () => (width < 420 ? 12 : 13) + rand(width < 420 ? 5 : 7);
+  const streamFontSize = () => (width < 420 ? 17 : 19) + rand(width < 420 ? 5 : 6);
 
   function resetStream(stream, initial = false) {
     stream.count = 12 + rand(23);
@@ -133,7 +133,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     streams = [];
-    const spacing = width < 420 ? 12 : 15;
+    const spacing = width < 420 ? 18 : 22;
     for (let x = 2; x < width; x += spacing) {
       if (Math.random() < 0.025) continue;
       streams.push(makeStream(x));
