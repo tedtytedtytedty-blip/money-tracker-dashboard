@@ -1,4 +1,4 @@
-const CACHE_NAME = "money-tracker-dashboard-v11";
+const CACHE_NAME = "money-tracker-dashboard-v12";
 const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg", "./icons/backup.svg", "./icons/entry.svg"];
 
 self.addEventListener("install", event => {
