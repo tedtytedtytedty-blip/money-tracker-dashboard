@@ -64,29 +64,28 @@ body{display:grid!important;grid-template-columns:minmax(0,1fr)!important;justif
 .matrix-canvas{position:fixed!important;left:0!important;top:0!important;right:auto!important;bottom:auto!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-width:100vw!important;max-width:none!important;display:block!important}
 main{grid-column:1!important;justify-self:center!important;align-self:center!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important;width:min(100vw,560px)!important;min-width:0!important;max-width:560px!important;margin:0 auto!important}
 
-/* Strong, visible color treatments for the Entry and Backup controls. */
+/* Entry uses the same translucent glass treatment as the other primary tiles. */
 .tile.entry{
-  --tile-a:rgba(255,77,176,.92)!important;
-  --tile-b:rgba(105,27,135,.98)!important;
-  --edge:#ff72c4!important;
-  --glow:rgba(255,60,174,.42)!important;
-  background:linear-gradient(145deg,rgba(255,104,194,.93) 0%,rgba(146,43,163,.97) 47%,rgba(36,8,51,.99) 100%)!important;
-  border:2px solid #ff79c7!important;
-  box-shadow:inset 0 2px 0 rgba(255,255,255,.44),inset 0 -18px 28px rgba(43,0,41,.42),0 4px 0 rgba(0,0,0,.25),0 12px 24px rgba(0,0,0,.3),0 0 30px rgba(255,46,166,.28)!important;
-}
-.tile.entry:before{
-  background:radial-gradient(ellipse at 28% -4%,rgba(255,255,255,.35),transparent 48%),linear-gradient(145deg,rgba(255,255,255,.14),transparent 58%,rgba(31,0,42,.27))!important;
-  opacity:1!important;
+  --tile-a:rgba(255,77,176,.52);
+  --tile-b:rgba(105,27,135,.44);
+  --edge:rgba(255,123,192,.82);
+  --glow:rgba(255,54,157,.18);
+  --icon-top:rgba(255,163,217,.24);
+  --icon-bottom:rgba(50,4,47,.68);
+  --icon-edge:rgba(255,178,222,.66);
+  background:linear-gradient(148deg,var(--tile-a) 0%,var(--tile-b) 52%,rgba(1,15,22,.98) 100%);
+  border:1px solid var(--edge);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),inset 1px 0 0 rgba(255,255,255,.12),inset -1px -2px 0 rgba(0,0,0,.28),inset 0 -20px 32px rgba(0,0,0,.24),0 2px 0 rgba(255,255,255,.08),0 5px 0 rgba(0,0,0,.24),0 13px 23px rgba(0,0,0,.3),0 19px 32px rgba(0,0,0,.17),0 0 23px var(--glow);
 }
 .backup-mini{
-  width:clamp(108px,28vw,124px)!important;
-  min-height:44px!important;
-  border:1.5px solid #42b5ff!important;
-  background:linear-gradient(145deg,rgba(11,112,197,.96),rgba(1,30,70,.99))!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -8px 14px rgba(0,0,0,.25),0 4px 13px rgba(0,0,0,.27),0 0 18px rgba(0,132,255,.28)!important;
+  width:clamp(108px,28vw,124px);
+  min-height:44px;
+  border:1px solid rgba(62,177,255,.82);
+  background:linear-gradient(145deg,rgba(13,99,167,.70),rgba(3,30,63,.82));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.20),inset 0 -8px 14px rgba(0,0,0,.24),0 4px 12px rgba(0,0,0,.24),0 0 17px rgba(0,125,255,.16);
 }
-.backup-mini-label{color:#f0faff!important;text-shadow:0 1px 4px rgba(0,0,0,.35)}
-.backup-mini img{width:29px!important;height:29px!important;flex-basis:29px!important}
+.backup-mini-label{color:#e8f8ff;text-shadow:0 1px 4px rgba(0,0,0,.35)}
+.backup-mini img{width:29px;height:29px;flex-basis:29px}
 
 </style>
 </head>
@@ -128,7 +127,7 @@ main{grid-column:1!important;justify-self:center!important;align-self:center!imp
 <a class="tile sheets" href="https://docs.google.com/spreadsheets/d/1WLIRo-jHN1IIBQTnGeKp9rsh-a0ntzjDt35XrKXHN-Q/edit?gid=34336380#gid=34336380" target="_blank" rel="noopener noreferrer" aria-label="Open Google Sheets">
 <svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="sheetIcon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15c879"/><stop offset="1" stop-color="#008746"/></linearGradient></defs>
 <rect x="24" y="18" width="132" height="144" rx="28" fill="#f9ffff"/><path d="M61 43h46l26 26v72a6 6 0 0 1-6 6H61a6 6 0 0 1-6-6V49a6 6 0 0 1 6-6z" fill="url(#sheetIcon)"/><path d="M107 43v21a5 5 0 0 0 5 5h21z" fill="#9ef1c9"/><rect x="70" y="82" width="50" height="39" rx="2" fill="none" stroke="#fff" stroke-width="4"/><path d="M70 95h50M70 108h50M86 82v39M103 82v39" stroke="#fff" stroke-width="3.5"/></svg></a>
-<a class="tile line" href="https://script.google.com/macros/s/AKfycbz3fkbBgqKROrEy4hq3vdLrS930Syr-MiEVWL4x5SiCP-VMVbPZX31zQHIq7oKrzKLn/exec?mode=text" target="_blank" rel="noopener noreferrer" aria-label="Open Money Tracker text entry">
+<a class="tile line" href="https://lin.ee/Tv43Fj9" target="_blank" rel="noopener noreferrer" aria-label="Open Money Tracker LINE Official Account">
 <svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="lineBox" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2cff68"/><stop offset="1" stop-color="#00bb41"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#lineBox)" stroke="#55ff83" stroke-width="1.5"/><path d="M90 49c-28 0-50 18-50 42 0 18 13 33 33 39l-2 18c0 3 3 4 6 2l21-17c25-3 42-20 42-42 0-24-22-42-50-42z" fill="#fff"/><text x="90" y="97" font-family="Arial,sans-serif" font-weight="800" font-size="24" fill="#06c755" text-anchor="middle">LINE</text></svg></a>
 <a class="tile entry" href="https://script.google.com/macros/s/AKfycbz3fkbBgqKROrEy4hq3vdLrS930Syr-MiEVWL4x5SiCP-VMVbPZX31zQHIq7oKrzKLn/exec" target="_blank" rel="noopener noreferrer" aria-label="Open transaction entry form" title="บันทึกรายการ"><img class="tile-icon" src="./icons/entry.svg" alt="" aria-hidden="true" width="256" height="256"></a>
 </nav>
