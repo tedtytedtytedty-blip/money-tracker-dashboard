@@ -27,14 +27,15 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 .tile:after{display:none}
 .tile:active{transform:translateY(4px) scale(.978);filter:brightness(1.07);box-shadow:inset 0 2px 0 rgba(255,255,255,.2),inset 0 -1px 0 rgba(0,0,0,.38),inset 0 -16px 25px rgba(0,0,0,.28),0 1px 0 rgba(255,255,255,.04),0 3px 0 rgba(0,0,0,.2),0 7px 13px rgba(0,0,0,.27),0 0 17px var(--glow)}
 .tile:active:before{opacity:1}
-.tile:active svg{transform:translateY(3px) scale(.966);filter:drop-shadow(0 1px 1px rgba(0,0,0,.26))}
+.tile:active svg{transform:translateY(3px) scale(.966);filter:drop-shadow(0 1px 1px rgba(0,0,0,.26))}.tile:active img.tile-icon{transform:translateY(3px) scale(.966);filter:drop-shadow(0 1px 1px rgba(0,0,0,.26))}
 .tile:focus-visible{outline:2px solid rgba(255,255,255,.95);outline-offset:4px}
-@media (hover:hover) and (pointer:fine){.tile:hover{transform:translateY(-2px);box-shadow:inset 0 2px 0 rgba(255,255,255,.42),inset 0 -3px 0 rgba(0,0,0,.24),0 3px 0 rgba(255,255,255,.1),0 8px 0 rgba(0,0,0,.22),0 18px 28px rgba(0,0,0,.34),0 0 27px var(--glow)}.tile:hover:before{opacity:1}.tile:hover svg{transform:translateY(-3px) perspective(700px) rotateX(1deg)}}
+@media (hover:hover) and (pointer:fine){.tile:hover{transform:translateY(-2px);box-shadow:inset 0 2px 0 rgba(255,255,255,.42),inset 0 -3px 0 rgba(0,0,0,.24),0 3px 0 rgba(255,255,255,.1),0 8px 0 rgba(0,0,0,.22),0 18px 28px rgba(0,0,0,.34),0 0 27px var(--glow)}.tile:hover:before{opacity:1}.tile:hover svg{transform:translateY(-3px) perspective(700px) rotateX(1deg)}.tile:hover img.tile-icon{transform:translateY(-3px) perspective(700px) rotateX(1deg)}}
 .tile svg{width:98%;height:98%;max-width:225px;max-height:225px;overflow:visible;position:relative;z-index:1;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 10px 8px rgba(0,0,0,.26)) drop-shadow(0 2px 1px rgba(255,255,255,.09));transform:translateY(-2px) perspective(700px) rotateX(1deg);transform-origin:center center;transition:transform 150ms cubic-bezier(.2,.8,.2,1),filter 150ms ease}
+.tile img.tile-icon{width:92%;height:92%;max-width:225px;max-height:225px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 10px 8px rgba(0,0,0,.28));transform:translateY(-2px);transform-origin:center center;transition:transform 150ms cubic-bezier(.2,.8,.2,1),filter 150ms ease}
 .dashboard{--tile-a:rgba(0,108,220,.8);--tile-b:rgba(0,196,171,.48);--edge:rgba(61,224,255,.92);--glow:rgba(0,193,255,.17);--icon-top:rgba(41,195,255,.25);--icon-bottom:rgba(0,32,77,.65);--icon-edge:rgba(116,228,255,.68)}
 .sheets{--tile-a:rgba(0,180,100,.68);--tile-b:rgba(0,110,84,.58);--edge:rgba(53,255,166,.8);--glow:rgba(0,237,128,.15);--icon-top:rgba(76,255,176,.22);--icon-bottom:rgba(0,46,37,.68);--icon-edge:rgba(111,255,185,.62)}
 .line{--tile-a:rgba(0,216,78,.62);--tile-b:rgba(0,95,69,.7);--edge:rgba(69,255,144,.8);--glow:rgba(0,255,99,.16);--icon-top:rgba(91,255,119,.2);--icon-bottom:rgba(0,51,30,.72);--icon-edge:rgba(120,255,148,.62)}
-.make{--tile-a:rgba(132,0,255,.68);--tile-b:rgba(36,16,116,.8);--edge:rgba(223,78,255,.88);--glow:rgba(148,0,255,.2);--icon-top:rgba(231,86,255,.25);--icon-bottom:rgba(25,0,73,.78);--icon-edge:rgba(235,136,255,.66)}
+.backup{--tile-a:rgba(0,104,220,.78);--tile-b:rgba(0,36,105,.94);--edge:rgba(69,177,255,.9);--glow:rgba(0,123,255,.2);--icon-top:rgba(61,183,255,.24);--icon-bottom:rgba(0,25,74,.78);--icon-edge:rgba(115,211,255,.68)}
 @media(min-width:560px){main{justify-content:center;padding-top:18px}.grid{width:min(85%,520px);gap:13px}.tile{aspect-ratio:.94}.tile svg{max-width:250px;max-height:250px}}
 @media(max-height:760px){main{gap:clamp(8px,1.3vh,14px);padding-top:6px;padding-bottom:max(16px,env(safe-area-inset-bottom))}.brand{transform:translateY(-10px)}.brand-mark{width:clamp(130px,30vh,190px);height:clamp(130px,30vh,190px)}h1{font-size:clamp(29px,7.5vw,39px)}.subtitle{font-size:clamp(23px,5.8vw,31px)}.grid{width:min(85%,460px);gap:9px}.tile{border-radius:24px;aspect-ratio:.98}.tile svg{max-width:210px;max-height:210px}}
 .matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.78;contain:strict}
@@ -81,8 +82,8 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 <rect x="24" y="18" width="132" height="144" rx="28" fill="#f9ffff"/><path d="M61 43h46l26 26v72a6 6 0 0 1-6 6H61a6 6 0 0 1-6-6V49a6 6 0 0 1 6-6z" fill="url(#sheetIcon)"/><path d="M107 43v21a5 5 0 0 0 5 5h21z" fill="#9ef1c9"/><rect x="70" y="82" width="50" height="39" rx="2" fill="none" stroke="#fff" stroke-width="4"/><path d="M70 95h50M70 108h50M86 82v39M103 82v39" stroke="#fff" stroke-width="3.5"/></svg></a>
 <a class="tile line" href="https://manager.line.biz/" target="_blank" rel="noopener noreferrer" aria-label="Open LINE Official Account Manager">
 <svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="lineBox" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2cff68"/><stop offset="1" stop-color="#00bb41"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#lineBox)" stroke="#55ff83" stroke-width="1.5"/><path d="M90 49c-28 0-50 18-50 42 0 18 13 33 33 39l-2 18c0 3 3 4 6 2l21-17c25-3 42-20 42-42 0-24-22-42-50-42z" fill="#fff"/><text x="90" y="97" font-family="Arial,sans-serif" font-weight="800" font-size="24" fill="#06c755" text-anchor="middle">LINE</text></svg></a>
-<a class="tile make" href="https://www.make.com/en" target="_blank" rel="noopener noreferrer" aria-label="Open Make">
-<svg viewBox="0 0 180 180" role="img" aria-hidden="true"><defs><linearGradient id="makeIcon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ed3dff"/><stop offset=".55" stop-color="#a500ff"/><stop offset="1" stop-color="#6900e8"/></linearGradient></defs><rect x="24" y="24" width="132" height="132" rx="37" fill="url(#makeIcon)" stroke="#ec83ff" stroke-width="1.5"/><path d="M54 119L78 61q2-5 7-3l8 4q4 2 2 6l-24 56q-2 5-7 3l-8-4q-4-2-2-4z" fill="#fff"/><path d="M83 121l16-61q1-5 6-4l10 2q4 1 3 6l-16 61q-1 5-6 4l-10-2q-4-1-3-6z" fill="#fff"/><path d="M121 60h9q5 0 5 5v57q0 5-5 5h-9q-5 0-5-5V65q0-5 5-5z" fill="#fff"/></svg></a>
+<a class="tile backup" href="https://drive.google.com/drive/folders/1_rs97qRjy1SAw_SuGJyuCG4Q8CF9cim0" target="_blank" rel="noopener noreferrer" aria-label="Open Backup folder" title="Backup folder">
+<img class="tile-icon" src="./icons/backup.webp" alt="" aria-hidden="true" width="256" height="256"></a>
 </nav>
 </main>
 <script>
@@ -93,56 +94,73 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
   if (!ctx) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Adapted from the stream/tail approach in yeutterg's Processing Matrix sketch.
-  const glyphs = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ";
-  let width = 0, height = 0, streams = [], fontSize = 15, raf = 0, lastFrame = 0, running = false;
+  // A Matrix-style rain: distinct vertical streams, bright leading glyphs,
+  // randomized katakana/digits, variable stream lengths and layered tails.
+  const glyphs = "ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ0123456789:・.=*+-<>¦";
+  let width = 0, height = 0, streams = [], raf = 0, lastFrame = 0, running = false;
   const rand = (max) => Math.floor(Math.random() * max);
   const pick = () => glyphs[rand(glyphs.length)];
+  const streamFontSize = () => (width < 420 ? 12 : 13) + rand(width < 420 ? 5 : 7);
 
-  function makeStream(x, startY) {
-    const count = 10 + rand(17);
-    const chars = Array.from({length: count}, () => pick());
-    return {
-      x, y: startY ?? -rand(Math.max(1, height)),
-      count, chars,
-      // Pixels per second keeps movement continuous and independent of frame rate.
-      speed: 125 + Math.random() * 95,
-      charTimer: 0
-    };
+  function resetStream(stream, initial = false) {
+    stream.count = 12 + rand(23);
+    stream.chars = Array.from({ length: stream.count }, () => pick());
+    stream.fontSize = streamFontSize();
+    stream.speed = 80 + Math.random() * 155;
+    stream.opacity = 0.52 + Math.random() * 0.42;
+    stream.changeEvery = 0.045 + Math.random() * 0.08;
+    stream.charTimer = 0;
+    if (initial) {
+      stream.y = Math.random() * height;
+    } else {
+      stream.y = -rand(28) * stream.fontSize;
+    }
+  }
+
+  function makeStream(x) {
+    const stream = { x, y: 0, count: 0, chars: [], fontSize: 14,
+      speed: 150, opacity: 0.8, changeEvery: 0.08, charTimer: 0 };
+    resetStream(stream, true);
+    return stream;
   }
 
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.0);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = Math.max(1, Math.floor(width * dpr));
     canvas.height = Math.max(1, Math.floor(height * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    fontSize = width < 420 ? 14 : 16;
-    // Dense columns with alternating gaps make the rain read as streams, not scan lines.
-    const spacing = width < 420 ? 14 : 17;
+
     streams = [];
+    const spacing = width < 420 ? 12 : 15;
     for (let x = 2; x < width; x += spacing) {
-      if (Math.random() < .06) continue;
-      streams.push(makeStream(x, Math.random() * height));
+      if (Math.random() < 0.025) continue;
+      streams.push(makeStream(x));
     }
+
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "rgba(0, 12, 8, .96)";
+    ctx.fillStyle = "rgba(0, 12, 8, .98)";
     ctx.fillRect(0, 0, width, height);
     if (reduceMotion) drawStatic();
   }
 
   function drawStatic() {
-    ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
-    streams.forEach((stream, si) => {
+    for (const stream of streams) {
+      ctx.font = stream.fontSize + "px monospace";
       for (let i = 0; i < stream.count; i++) {
-        const y = stream.y - i * fontSize;
-        if (y < 0 || y > height || si % 2) continue;
-        ctx.fillStyle = i === 0 ? "rgba(220,255,231,.9)" : "rgba(0,255,105," + Math.max(.12, .72 - i * .035) + ")";
+        const y = stream.y - i * stream.fontSize;
+        if (y < 0 || y > height) continue;
+        if (i === 0) {
+          ctx.fillStyle = "rgba(235,255,240,.92)";
+        } else {
+          const alpha = Math.max(.06, stream.opacity * (1 - i / stream.count));
+          ctx.fillStyle = "rgba(0,255,105," + alpha.toFixed(2) + ")";
+        }
         ctx.fillText(stream.chars[i], stream.x, y);
       }
-    });
+    }
   }
 
   function frame(now) {
@@ -150,51 +168,53 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
     const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 1 / 60;
     lastFrame = now;
 
-    // Render every animation frame; delta-time motion avoids the stop-start look.
-    // Fade trails in proportion to elapsed time, so the rain looks consistent at 30–120 Hz.
-    const fadeAlpha = 1 - Math.pow(0.94, dt * 60);
+    // Longer trails reveal the movement direction while delta-time preserves smooth motion.
+    const fadeAlpha = 1 - Math.pow(0.965, dt * 60);
     ctx.fillStyle = "rgba(0, 12, 8, " + fadeAlpha.toFixed(3) + ")";
     ctx.fillRect(0, 0, width, height);
-    ctx.font = fontSize + "px monospace";
     ctx.textBaseline = "top";
 
     for (const stream of streams) {
       stream.y += stream.speed * dt;
       stream.charTimer += dt;
-      if (stream.charTimer > 0.09) {
+      if (stream.charTimer >= stream.changeEvery) {
         stream.charTimer = 0;
-        if (Math.random() < .72) stream.chars[0] = pick();
-        if (Math.random() < .55) {
-          const index = 1 + rand(stream.count - 1);
-          stream.chars[index] = pick();
+        if (Math.random() < .86) stream.chars[0] = pick();
+        const changes = 2 + rand(4);
+        for (let n = 0; n < changes; n++) {
+          if (Math.random() < .78) {
+            stream.chars[rand(stream.count)] = pick();
+          }
         }
       }
 
+      ctx.font = stream.fontSize + "px monospace";
       for (let i = 0; i < stream.count; i++) {
-        const y = stream.y - i * fontSize;
-        if (y < -fontSize || y > height + fontSize) continue;
+        const y = stream.y - i * stream.fontSize;
+        if (y < -stream.fontSize || y > height + stream.fontSize) continue;
+
         if (i === 0) {
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = "rgba(65,255,145,.85)";
-          ctx.fillStyle = "rgba(235,255,240,.98)";
+          ctx.shadowBlur = 9;
+          ctx.shadowColor = "rgba(75,255,150,.95)";
+          ctx.fillStyle = "rgba(239,255,244,.98)";
+        } else if (i < 4) {
+          const alpha = stream.opacity * (1 - i * .12);
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = "rgba(0,255,105,.55)";
+          ctx.fillStyle = "rgba(40,255,120," + alpha.toFixed(2) + ")";
         } else {
-          ctx.shadowBlur = i < 4 ? 3 : 0;
-          ctx.shadowColor = "rgba(0,255,105,.45)";
-          const alpha = Math.max(.1, .86 - i * .045);
-          ctx.fillStyle = i < 4
-            ? "rgba(36,255,119," + alpha + ")"
-            : "rgba(0,196,76," + alpha + ")";
+          const tail = Math.max(.045, stream.opacity * Math.pow(1 - i / stream.count, 1.35));
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = "rgba(0,210,82," + tail.toFixed(2) + ")";
         }
         ctx.fillText(stream.chars[i], stream.x, y);
       }
 
-      if (stream.y - stream.count * fontSize > height && Math.random() > .12) {
-        stream.y = -rand(18) * fontSize;
-        stream.speed = 125 + Math.random() * 95;
-        stream.count = 10 + rand(17);
-        stream.chars = Array.from({length: stream.count}, () => pick());
+      if (stream.y - stream.count * stream.fontSize > height) {
+        resetStream(stream);
       }
     }
+
     ctx.shadowBlur = 0;
     raf = requestAnimationFrame(frame);
   }
@@ -202,6 +222,7 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
   function start() {
     if (reduceMotion || document.hidden || running) return;
     running = true;
+    lastFrame = 0;
     if (!raf) raf = requestAnimationFrame(frame);
   }
   function stop() {
@@ -219,6 +240,6 @@ h1{margin:0;font-weight:760;letter-spacing:-.055em;line-height:1.02;font-size:cl
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
 }
-</script>>
+</script>
 </body>
 </html>
